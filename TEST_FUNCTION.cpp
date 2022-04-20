@@ -1,39 +1,45 @@
 #include <cmath>
 #include <iostream>
 
-void ACKLEY_Function(double *x, double *f, int DIM);
-void RASTRIGIN_Function(double *x, double *f, int DIM);
-void ROSENBROCK_Function(double *x, double *f, int DIM);
-void SPHERE_Function(double *x, double *f, int DIM);
-void Michalewicz_Function(double *x, double *f, int DIM); 
-void Bent_Cigar_Function(double *x, double *f, int DIM);
-void Schaffer_F7_Function(double *x, double *f, int DIM); 
-void Zakharov_Function(double *x, double *f, int DIM);
-void Griewank_Function(double *x, double *f, int DIM);
-void Schwefel_226_Function(double *x, double *f, int DIM);
-void SUM_SQUARES_Function(double *x, double *f, int DIM);
-void LEVY03_Function(double *x, double *f, int DIM);
-void LEVY05_Function(double *x, double *f, int DIM);
-void STYBLINSKI_TANG_Function(double *x, double *f, int DIM);
-void Salomon_Function(double *x, double *f, int DIM);
-void Whitley(double *x, double *f, int DIM);
-void Brown_Function(double *x, double *f, int DIM);
-void Exponential_Function(double *x, double *f, int DIM);
-void Rotated_Hyper_Ellipsoid_Function(double *x, double *f, int DIM);
-void DIXON_PRICE_Function(double *x, double *f, int DIM);
-void Trid_Function(double *x, double *f, int DIM);
+void ACKLEY_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void RASTRIGIN_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void ROSENBROCK_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (1,....,1)
+void SPHERE_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Michalewicz_Function(double *x, double *f, int DIM); //uncertain
+void Bent_Cigar_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Schaffer_F7_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Zakharov_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Griewank_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Schwefel_226_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (420.9687,....,420.9687)
+void SUM_SQUARES_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void LEVY03_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (1,....,1)
+void STYBLINSKI_TANG_Function(double *x, double *f, int DIM); //global optima f(x*) = -39.16599 * DIM at x* = (-2.903534,....,-2.903534)
+void Salomon_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Whitley(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (1,....,1)
+void Brown_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void Exponential_Function(double *x, double *f, int DIM); //global optima f(x*) = -1 at x* = (0,....,0)
+void Rotated_Hyper_Ellipsoid_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at x* = (0,....,0)
+void DIXON_PRICE_Function(double *x, double *f, int DIM); //global optima f(x*) = 0 at every x_i = pow(2, -((pow(2, i) - 2) / pow(2, i)))
+void Trid_Function(double *x, double *f, int DIM); //global optima f(x*) = -DIM * (DIM + 4) * (DIM - 1) / 6 at every x_i = i * (DIM + 1 - i)
+void CosineMixture(double *x, double *f, int DIM); //global optima f(x*) = -0.1 * DIM at x* = (0,....,0)
+void Perm_beta_Function(double *x, double *f, int DIM); //global optima f(x*) = 0, at x* = (1, 1/2 , ... , 1/DIM)
+void Shubert_N4(double *x, double *f, int DIM); //global optima f(x*) ≈ −25.740858 when DIM == 2
 
 void Unimodal_Range(double *max, double *min, int dim, int function_num);
 void Unimodal_Function(double *x, double *f, int dim, int function_num);
 void Multimodal_Range(double *max, double *min, int dim, int function_num);
 void Multimodal_Function(double *x, double *f, int dim, int function_num);
 
-void Set_Range(double *max, double *min, int dim, int Land_Structure, int function_num){
-    if(Land_Structure == 0){
+void Set_Range(double *max, double *min, int dim, int function_num){
+    if(function_num >= 1 && function_num <= 10){
         Unimodal_Range(max, min, dim, function_num);
     }
+    else if(function_num >= 11 && function_num <= 22){
+        Multimodal_Range(max, min, dim, function_num - 10);
+    }
     else{
-        Multimodal_Range(max, min, dim, function_num);
+        std::cout << "Invaild Function Number" << std::endl;
+        abort();
     }
 }
 
@@ -41,7 +47,7 @@ void ALL_TEST_FUNCTION(double *x, double *f, int dim, int function_num){
     if(function_num >= 1 && function_num <= 10){
         Unimodal_Function(x, f, dim, function_num);
     }
-    else if(function_num >= 11 && function_num <= 20){
+    else if(function_num >= 11 && function_num <= 22){
         Multimodal_Function(x, f, dim, function_num - 10);
     }
     else{
@@ -152,7 +158,7 @@ void Unimodal_Function(double *x, double *f, int dim, int function_num){
 *Multimodal Function:
 *No.1 RASTRIGIN_Function
 *No.2 ACKLEY_Function
-*No.3 Michalewicz_Function
+*No.3 CosineMixture
 *N0.4 Schaffer_F7
 *No.5 Griewank_Function
 *No.6 Schwefel 2.26
@@ -160,6 +166,8 @@ void Unimodal_Function(double *x, double *f, int dim, int function_num){
 *No.8 STYBLINSKI_TANG_Function
 *No.9 Salomon_Function
 *No.10 Whitley_Function
+*No.11 Perm 0,d beta Function
+*No.12 Shubert N.4 
 */
 
 void Multimodal_Range(double *max, double *min, int dim, int function_num){
@@ -173,8 +181,8 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num){
             *min = -32.768;
             break;
         case 3:
-            *max = M_PI;
-            *min = 0.0;
+            *max = 1.0;
+            *min = -1.0;
             break;
         case 4:
             *max = 100.0;
@@ -189,8 +197,8 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num){
             *min = -500.0;
             break;
         case 7:
-            *max = 10.0;
-            *min = -10.0;
+            *max = 5.0;
+            *min = -5.0;
             break;
         case 8:
             *max = 5.0;
@@ -203,6 +211,14 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num){
         case 10:
             *max = 10.24;
             *min = -10.24;
+            break;
+        case 11:
+            *max = dim;
+            *min = -dim;
+            break;
+        case 12:
+            *max = 10.0;
+            *min = -10.0;
             break;
         default:
             break;
@@ -218,7 +234,7 @@ void Multimodal_Function(double *x, double *f, int dim, int function_num){
             ACKLEY_Function(x, f, dim);
             break;
         case 3:
-            Michalewicz_Function(x, f, dim);
+            CosineMixture(x, f, dim);
             break;
         case 4:
             Schaffer_F7_Function(x, f, dim);
@@ -240,6 +256,12 @@ void Multimodal_Function(double *x, double *f, int dim, int function_num){
             break;
         case 10:
             Whitley(x, f, dim);
+            break;
+        case 11:
+            Perm_beta_Function(x, f, dim);
+            break;
+        case 12:
+            Shubert_N4(x, f, dim);
             break;
         default:
             break;
@@ -283,13 +305,15 @@ void SPHERE_Function(double *x, double *f, int DIM){
     }
     f[0] = t1;
 }
-
+//uncertain
 void Michalewicz_Function(double *x, double *f, int DIM){
     double t1 = 0.0;
     for(int i = 0; i < DIM; ++i){
-        t1 +=  sin(x[i]) * pow(sin((i * x[i] * x[i]) / M_PI), 20);
+        double a1 = sin(x[i]);
+        double a2 = pow(sin((i * x[i] * x[i]) / M_PI), 2 * 10);
+        t1 += a1 * a2;
     }
-    f[0] = t1;
+    f[0] = -t1;
 }
 
 void Bent_Cigar_Function(double *x, double *f, int DIM){
@@ -321,12 +345,12 @@ void Zakharov_Function(double *x, double *f, int DIM){
 
 void Griewank_Function(double *x, double *f, int DIM){
     double t1 = 0.0;
-    double t2 = 0.0;
+    double t2 = 1.0;
     for(int i = 0; i < DIM; ++i){
-        t1 += pow(x[i], 2) / 4000.0;
-        t2 *= cos(x[i] / sqrt(i));
+        t1 += pow(x[i], 2);
+        t2 *= cos((x[i] / sqrt(i + 1)));
     }
-    f[0] = t1 - t2 + 1;
+    f[0] = t1 / 4000.0 - t2 + 1;
 }
 
 void Schwefel_226_Function(double *x, double *f, int DIM){
@@ -434,3 +458,38 @@ void Trid_Function(double *x, double *f, int DIM){
     f[0] = t1 - t2;
 }
 
+void CosineMixture(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    double t2 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += cos(5.0 * M_PI * x[i]);
+        t2 += pow(x[i], 2);
+    }
+
+    f[0] = -(0.1 * t1 - t2);
+}
+
+void Perm_beta_Function(double *x, double *f, int DIM){
+    // Beta default value : 10
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double t2 = 0.0;
+        for(int j = 0; j < DIM; ++j){
+            t2 += ((j + 1) + 10) * (pow(x[j], i + 1) - pow(j + 1, -(i + 1)));
+        }
+        t1 += pow(t2, 2);
+    }
+    f[0] = t1;
+}
+
+void Shubert_N4(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double t2 = 0.0;
+        for(int j = 1; j < 6; ++j){
+            t2 += j * cos((j + 1) * x[i] + j);
+        }
+        t1 += t2;
+    }
+    f[0] = t1;
+}
