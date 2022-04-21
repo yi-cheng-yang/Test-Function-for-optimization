@@ -49,6 +49,6 @@ Test function for single objective optimization
  >> NO.23 Michalewicz Function
 
 
- use ALL_TEST_FUNCTION() for evaluation solution
+ use ALL_TEST_FUNCTION() for evaluating solution
  
- use Set_Range() for set function search range
+ use Set_Range() for setting function search range
