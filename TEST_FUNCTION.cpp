@@ -51,7 +51,7 @@ void Set_Range(double *max, double *min, int dim, int function_num){
     if(function_num >= 1 && function_num <= 14){
         Unimodal_Range(max, min, dim, function_num);
     }
-    else if(function_num >= 15 && function_num <= 40){
+    else if(function_num >= 15 && function_num <= 38){
         Multimodal_Range(max, min, dim, function_num - 14);
     }
     else{
@@ -64,7 +64,7 @@ void ALL_TEST_FUNCTION(double *x, double *f, int dim, int function_num){
     if(function_num >= 1 && function_num <= 14){
         Unimodal_Function(x, f, dim, function_num);
     }
-    else if(function_num >= 15 && function_num <= 40){
+    else if(function_num >= 15 && function_num <= 38){
         Multimodal_Function(x, f, dim, function_num - 14);
     }
     else{
@@ -218,19 +218,17 @@ void Unimodal_Function(double *x, double *f, int dim, int function_num){
 *No.11 Perm 0,d beta Function /done
 *No.12 Shubert N.4 /done
 *No.13 Michalewicz_Function/ done
-*NO.14 Ripple_1 /done
-*NO.15 Ripple_25 /done
-*NO.16 Deb1 /done
-*NO.17 Deb3 /done
-*NO.18 Csendes /done
-*NO.19 Alpine_1 /done
-*NO.20 Alpine_2 /done
-*NO.21 Pathological /done
-*NO.22 Pinter /done
-*NO.23 Qing /done
-*No.24 Sargan /done
-*NO.25 Trigonometric1 /done
-*NO.26 Trigonometric2 /done
+*NO.14 Deb1 /done
+*NO.15 Deb3 /done
+*NO.16 Csendes /done
+*NO.17 Alpine_1 /done
+*NO.18 Alpine_2 /done
+*NO.19 Pathological /done
+*NO.20 Pinter /done
+*NO.21 Qing /done
+*No.22 Sargan /done
+*NO.23 Trigonometric1 /done
+*NO.24 Trigonometric2 /done
 */
 
 void Multimodal_Range(double *max, double *min, int dim, int function_num){
@@ -285,14 +283,6 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num){
             break;
         case 13:
             *max = M_PI;
-            *min = 0.0;
-            break;
-        case 14:
-            *max = 1.0;
-            *min = 0.0;
-            break;
-        case 15:
-            *max = 1.0;
             *min = 0.0;
             break;
         case 16:
@@ -386,42 +376,36 @@ void Multimodal_Function(double *x, double *f, int dim, int function_num){
             Michalewicz_Function(x, f, dim);
             break;
         case 14:
-            Ripple_1(x, f, dim);
-            break;
-        case 15:
-            Ripple_25(x, f, dim);
-            break;
-        case 16:
             Deb_1(x, f, dim);
             break;
-        case 17:
+        case 15:
             Deb_3(x, f, dim);
             break;
-        case 18:
+        case 16:
             Csendes(x, f, dim);
             break;
-        case 19:
+        case 17:
             Alpine_1(x, f, dim);
             break;
-        case 20:
+        case 18:
             Alpine_2(x, f, dim);
             break;
-        case 21:
+        case 19:
             Pathological(x, f, dim);
             break;
-        case 22:
+        case 20:
             Pinter(x, f, dim);
             break;
-        case 23:
+        case 21:
             Qing(x, f, dim);
             break;
-        case 24:
+        case 22:
             Sargan(x, f, dim);
             break;
-        case 25:
+        case 23:
             Trigonometric_1(x, f, dim);
             break;
-        case 26:
+        case 24:
             Trigonometric_2(x, f, dim);
             break;
         default:
@@ -651,22 +635,6 @@ void Shubert_N4(double *x, double *f, int DIM){
             t2 += j * cos((j + 1) * x[i] + j);
         }
         t1 += t2;
-    }
-    f[0] = t1;
-}
-
-void Ripple_1(double *x, double *f, int DIM){
-    double t1 = 0.0;
-    for(int i = 0; i < DIM; ++i){
-       t1 += -exp(-2.0 * log(2.0 * pow((x[i] - 0.1) / 0.8, 2))) * (pow(sin(5.0 * M_PI * x[i]), 6) + 0.1 * pow(cos(500.0 * M_PI * x[i]), 2));
-    }
-    f[0] = t1;
-}
-
-void Ripple_25(double *x, double *f, int DIM){
-    double t1 = 0.0;
-    for(int i = 0; i < DIM; ++i){
-       t1 += -exp(-2.0 * log(2.0 * pow((x[i] - 0.1) / 0.8, 2))) * (pow(sin(5.0 * M_PI * x[i]), 6));
     }
     f[0] = t1;
 }
