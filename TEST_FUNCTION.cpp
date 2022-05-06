@@ -26,8 +26,6 @@ void Perm_beta_Function(double *x, double *f, int DIM); //global optima f(x*) = 
 void Shubert_N4(double *x, double *f, int DIM); //global optima f(x*) ≈ −25.740858 when DIM = 2
 void Powell_Singular(double *x, double *f, int DIM); //global optima f(x*) ≈ 0, at x* = (3,−1,0,1,··· ,3,−1,0,1)
 void Powell_Sum(double *x, double *f, int DIM);//global optima f(x*) ≈ 0
-void Ripple_1(double *x, double *f, int DIM);
-void Ripple_25(double *x, double *f, int DIM);
 void Deb_1(double *x, double *f, int DIM);
 void Deb_3(double *x, double *f, int DIM);
 void Csendes(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
