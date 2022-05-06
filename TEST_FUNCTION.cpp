@@ -24,6 +24,24 @@ void Trid_Function(double *x, double *f, int DIM); //global optima f(x*) = -DIM 
 void CosineMixture(double *x, double *f, int DIM); //global optima f(x*) = -0.1 * DIM at x* = (0,....,0)
 void Perm_beta_Function(double *x, double *f, int DIM); //global optima f(x*) = 0, at x* = (1, 1/2 , ... , 1/DIM)
 void Shubert_N4(double *x, double *f, int DIM); //global optima f(x*) ≈ −25.740858 when DIM = 2
+void Powell_Singular(double *x, double *f, int DIM); //global optima f(x*) ≈ 0, at x* = (3,−1,0,1,··· ,3,−1,0,1)
+void Powell_Sum(double *x, double *f, int DIM);//global optima f(x*) ≈ 0
+void Rana(double *x, double *f, int DIM);
+void Ripple_1(double *x, double *f, int DIM);
+void Ripple_25(double *x, double *f, int DIM);
+void Deb_1(double *x, double *f, int DIM);
+void Deb_3(double *x, double *f, int DIM);
+void Csendes(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Alpine_1(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Alpine_2(double *x, double *f, int DIM);//global optima f(x*) = -pow(2.808, DIM) at x* = (7.917,....,7.917)
+void Chung_Reynolds(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Pathological(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Pinter(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Qing(double *x, double *f, int DIM);//global optima f(x*) = 0  at every x_i = +sqrt(i) or -sqrt(i)
+void Sargan(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Streched_V_Sine_Wave(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Trigonometric_1(double *x, double *f, int DIM);//global optima f(x*) = 0 at x* = (0,....,0)
+void Trigonometric_2(double *x, double *f, int DIM);//global optima f(x*) = 1 at x* = (0.9,....,0.9)
 
 void Unimodal_Range(double *max, double *min, int dim, int function_num);
 void Unimodal_Function(double *x, double *f, int dim, int function_num);
@@ -31,11 +49,11 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num);
 void Multimodal_Function(double *x, double *f, int dim, int function_num);
 
 void Set_Range(double *max, double *min, int dim, int function_num){
-    if(function_num >= 1 && function_num <= 10){
+    if(function_num >= 1 && function_num <= 14){
         Unimodal_Range(max, min, dim, function_num);
     }
-    else if(function_num >= 11 && function_num <= 23){
-        Multimodal_Range(max, min, dim, function_num - 10);
+    else if(function_num >= 15 && function_num <= 40){
+        Multimodal_Range(max, min, dim, function_num - 14);
     }
     else{
         std::cout << "Invaild Function Number" << std::endl;
@@ -44,11 +62,11 @@ void Set_Range(double *max, double *min, int dim, int function_num){
 }
 
 void ALL_TEST_FUNCTION(double *x, double *f, int dim, int function_num){
-    if(function_num >= 1 && function_num <= 10){
+    if(function_num >= 1 && function_num <= 14){
         Unimodal_Function(x, f, dim, function_num);
     }
-    else if(function_num >= 11 && function_num <= 23){
-        Multimodal_Function(x, f, dim, function_num - 10);
+    else if(function_num >= 15 && function_num <= 40){
+        Multimodal_Function(x, f, dim, function_num - 14);
     }
     else{
         std::cout << "Invaild Function Number" << std::endl;
@@ -69,6 +87,10 @@ void ALL_TEST_FUNCTION(double *x, double *f, int dim, int function_num){
 *No.8 Rotated_Hyper_Ellipsoid_Function /done
 *No.9 DIXON_PRICE_FUNCTION /uncertain
 *No.10 Trid_Function /done
+*NO.11 Powell_Singular /done
+*NO.12 Powell_Sum /done
+*NO.13 Chung_Reynolds /done
+*NO.14 Streched_V_Sine_Wave /done
 */
 void Unimodal_Range(double *max, double *min, int dim, int function_num){
     switch (function_num){
@@ -112,6 +134,22 @@ void Unimodal_Range(double *max, double *min, int dim, int function_num){
             *max = pow(dim, 2);
             *min = -pow(dim, 2);
             break;
+        case 11:
+            *max = 5.0;
+            *min = -4.0;
+            break;
+        case 12:
+            *max = 1.0;
+            *min = -1.0;
+            break;
+        case 13:
+            *max = 100.0;
+            *min = -100.0;
+            break;
+        case 14:
+            *max = 10.0;
+            *min = -10.0;
+            break;
         default:
             break;
     }
@@ -149,6 +187,18 @@ void Unimodal_Function(double *x, double *f, int dim, int function_num){
         case 10:
             Trid_Function(x, f, dim);
             break;
+        case 11:
+            Powell_Singular(x, f, dim);
+            break;
+        case 12:
+            Powell_Sum(x, f, dim);
+            break;
+        case 13:
+            Chung_Reynolds(x, f, dim);
+            break;
+        case 14:
+            Streched_V_Sine_Wave(x, f, dim);
+            break;
         default:
             break;
     }
@@ -169,6 +219,19 @@ void Unimodal_Function(double *x, double *f, int dim, int function_num){
 *No.11 Perm 0,d beta Function /done
 *No.12 Shubert N.4 /done
 *No.13 Michalewicz_Function/ done
+*NO.14 Ripple_1 /done
+*NO.15 Ripple_25 /done
+*NO.16 Deb1 /done
+*NO.17 Deb3 /done
+*NO.18 Csendes /done
+*NO.19 Alpine_1 /done
+*NO.20 Alpine_2 /done
+*NO.21 Pathological /done
+*NO.22 Pinter /done
+*NO.23 Qing /done
+*No.24 Sargan /done
+*NO.25 Trigonometric1 /done
+*NO.26 Trigonometric2 /done
 */
 
 void Multimodal_Range(double *max, double *min, int dim, int function_num){
@@ -225,6 +288,58 @@ void Multimodal_Range(double *max, double *min, int dim, int function_num){
             *max = M_PI;
             *min = 0.0;
             break;
+        case 14:
+            *max = 1.0;
+            *min = 0.0;
+            break;
+        case 15:
+            *max = 1.0;
+            *min = 0.0;
+            break;
+        case 16:
+            *max = 1.0;
+            *min = -1.0;
+            break;
+        case 17:
+            *max = 1.0;
+            *min = -1.0;
+            break;
+        case 18:
+            *max = 1.0;
+            *min = -1.0;
+            break;
+        case 19:
+            *max = 10.0;
+            *min = -10.0;
+            break;
+        case 20:
+            *max = 10.0;
+            *min = 0.0;
+            break;
+        case 21:
+            *max = 100.0;
+            *min = -100.0;
+            break;
+        case 22:
+            *max = 10.0;
+            *min = -10.0;
+            break;
+        case 23:
+            *max = 500.0;
+            *min = -500.0;
+            break;
+        case 24:
+            *max = 100.0;
+            *min = -100.0;
+            break;
+        case 25:
+            *max = M_PI;
+            *min = 0.0;
+            break;
+        case 26:
+            *max = 500.0;
+            *min = -500.0;
+            break;
         default:
             break;
     }
@@ -270,6 +385,45 @@ void Multimodal_Function(double *x, double *f, int dim, int function_num){
             break;
         case 13:
             Michalewicz_Function(x, f, dim);
+            break;
+        case 14:
+            Ripple_1(x, f, dim);
+            break;
+        case 15:
+            Ripple_25(x, f, dim);
+            break;
+        case 16:
+            Deb_1(x, f, dim);
+            break;
+        case 17:
+            Deb_3(x, f, dim);
+            break;
+        case 18:
+            Csendes(x, f, dim);
+            break;
+        case 19:
+            Alpine_1(x, f, dim);
+            break;
+        case 20:
+            Alpine_2(x, f, dim);
+            break;
+        case 21:
+            Pathological(x, f, dim);
+            break;
+        case 22:
+            Pinter(x, f, dim);
+            break;
+        case 23:
+            Qing(x, f, dim);
+            break;
+        case 24:
+            Sargan(x, f, dim);
+            break;
+        case 25:
+            Trigonometric_1(x, f, dim);
+            break;
+        case 26:
+            Trigonometric_2(x, f, dim);
             break;
         default:
             break;
@@ -498,6 +652,183 @@ void Shubert_N4(double *x, double *f, int DIM){
             t2 += j * cos((j + 1) * x[i] + j);
         }
         t1 += t2;
+    }
+    f[0] = t1;
+}
+
+void Ripple_1(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+       t1 += -exp(-2.0 * log(2.0 * pow((x[i] - 0.1) / 0.8, 2))) * (pow(sin(5.0 * M_PI * x[i]), 6) + 0.1 * pow(cos(500.0 * M_PI * x[i]), 2));
+    }
+    f[0] = t1;
+}
+
+void Ripple_25(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+       t1 += -exp(-2.0 * log(2.0 * pow((x[i] - 0.1) / 0.8, 2))) * (pow(sin(5.0 * M_PI * x[i]), 6));
+    }
+    f[0] = t1;
+}
+
+void Deb_1(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += pow(sin(5.0 * M_PI * x[i]), 6);
+    }
+    f[0] = ((-1.0) / DIM) * t1;
+}
+
+void Deb_3(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += pow(sin(5.0 * M_PI * (pow(x[i], 3.0 / 4.0) - 0.05)), 6);
+    }
+    f[0] = ((-1.0) / DIM) * t1;
+}
+
+void Csendes(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        if(x[i] == 0){
+            t1 += pow(x[i], 6) * (2.0 + sin(0.0));
+        }
+        else{
+            t1 += pow(x[i], 6) * (2.0 + sin(1.0 / x[i]));
+        }
+        
+    }
+    f[0] = t1;
+}
+
+void Alpine_1(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += fabs(x[i] * sin(x[i]) + 0.1 * x[i]);
+    }
+    f[0] = t1;
+}
+
+void Alpine_2(double *x, double *f, int DIM){
+    double t1 = 1.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 *= sqrt(x[i]) * sin(x[i]);
+    }
+    f[0] = -t1;
+    
+}
+
+void Pathological(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM - 1; ++i){
+        double temp = (pow(sin(sqrt(100.0 * pow(x[i], 2) + pow(x[i + 1], 2))), 2) - 0.5) / (1.0 + 0.001 * pow(pow(x[i] - 2.0 * x[i] * x[i + 1] + pow(x[i + 1], 2), 2), 2));
+        t1 += 0.5 + temp;
+    }
+    f[0] = t1;
+}
+
+void Pinter(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double A;
+        double B ;
+        if(i == 0){
+            A = x[DIM - 1] * sin(x[i] + sin(x[i + 1]));
+            B = pow(x[DIM - 1], 2) - 2.0 * x[i] + 3.0 * x[i + 1] - cos(x[i]) + 1.0;
+        }
+        else if(i == DIM - 1){
+            A = x[DIM - 1] * sin(x[i] + sin(x[0]));
+            B = pow(x[i - 1], 2) - 2.0 * x[i] + 3.0 * x[0] - cos(x[i]) + 1.0;
+        }
+        else{
+            A = x[i - 1] * sin(x[i] + sin(x[i + 1]));
+            B = pow(x[i - 1], 2) - 2.0 * x[i] + 3.0 * x[i + 1] - cos(x[i]) + 1.0;
+        }
+        t1 += (i + 1) * pow(x[i], 2) + 20.0 * (i + 1) * pow(sin(A), 2) + (i + 1) * log10(1.0 + (i + 1) * pow(B, 2));
+    }
+    f[0] = t1;
+}
+
+void Qing(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += pow(pow(x[i], 2) - (i + 1), 2);
+    }
+    f[0] = t1;
+}
+
+void Sargan(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double t2 = 0.0;
+        for(int j = 1; j < DIM; ++j){
+            t2 += x[i] * x[j];
+        }
+        t1 += DIM * (pow(x[i], 2) + 0.4 * t2);
+    }
+    f[0] = t1;
+}
+
+void Trigonometric_1(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double t2 = 0.0;
+        for(int j = 0; j < DIM; ++j){
+            t2 += cos(x[j]);
+        }
+        t1 += pow((DIM - t2 + (i + 1) * (1.0 - cos(x[i]) - sin(x[i]))), 2);
+    }
+    f[0] = t1;
+}
+
+void Trigonometric_2(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        double t2 = 8.0 * pow(sin(7.0 * pow(x[i] - 0.9, 2)), 2);
+        double t3 = 6.0 * pow(sin(14.0 * pow(x[i] - 0.9, 2)), 2);
+        t1 += (t2 + t3 + pow(x[i] - 0.9, 2));
+    }
+    f[0] = 1.0 + t1;
+}
+
+void Powell_Singular(double *x, double *f, int DIM){
+    if(DIM / 4 > 0){
+        double t1 = 0.0;
+        for(int i = 0; i < DIM / 4; ++i){
+            int c = 4 * (i + 1);
+            t1 += (pow(x[c - 4] + 10.0 * x[c - 3], 2) + 5.0 * pow(x[c - 2] - x[c - 1], 2) + pow(x[c - 3] - x[c - 2], 4) + 10.0 * pow(x[c - 4] - x[c - 1], 4));
+        }
+        f[0] = t1;
+    }
+    else{
+        std::cout << "illegal DIM" << std::endl;
+        abort();
+    }
+}
+
+void Powell_Sum(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += pow(fabs(x[i]), i + 2);
+    }
+    f[0] = t1;
+}
+
+void Chung_Reynolds(double *x, double *f, int DIM){
+    double t1 = 0;
+    for(int i = 0; i < DIM; ++i){
+        t1 += pow(x[i], 2);
+    }
+    f[0] = pow(t1, 2);
+}
+
+void Streched_V_Sine_Wave(double *x, double *f, int DIM){
+    double t1 = 0.0;
+    for(int i = 0; i < DIM - 1; ++i){
+        double t2 = pow(pow(x[i + 1], 2) + pow(x[i], 2), 0.25);
+        double t3 = pow(sin(50.0 * pow(pow(x[i + 1], 2) + pow(x[i], 2), 0.1)), 2) + 0.1;
+        t1 += t2 * t3;
     }
     f[0] = t1;
 }

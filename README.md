@@ -1,7 +1,7 @@
 # Test-Function-for-optimization
 
 Test function for single objective optimization
- > There are 23 functions in this file
+ > There are 40 functions in this file
  >> NO.1 ROSENBROCK Function
  >>
  >> NO.2 SPHERE Function
@@ -22,31 +22,65 @@ Test function for single objective optimization
  >>
  >> NO.10 Trid_Function
  >>
- >> NO.11 RASTRIGIN Function
+ >> NO.11 Powell Singular Function
  >>
- >> NO.12 ACKLEY Function
+ >> NO.12 Powell Sum Function
  >>
- >> NO.13 CosineMixture Function
+ >> NO.13 Chung Reynolds Function
  >>
- >> NO.14 Schaffer_F7 Function
+ >> NO.14 Streched V Sine Wave Function
  >>
- >> NO.15 Griewank Function
+ >> NO.15 RASTRIGIN Function
  >>
- >> NO.16 Schwefel 2.26 Function
+ >> NO.16 ACKLEY Function
  >>
- >> NO.17 LEVY Function
+ >> NO.17 CosineMixture Function
  >>
- >> NO.18 STYBLINSKI TANG Function
+ >> NO.18 Schaffer_F7 Function
  >>
- >> NO.19 Salomon Function
+ >> NO.19 Griewank Function
  >>
- >> NO.20 Whitley Function
+ >> NO.20 Schwefel 2.26 Function
  >>
- >> NO.21 Perm 0,d beta Function
+ >> NO.21 LEVY Function
  >>
- >> NO.22 Shubert N.4 Function
+ >> NO.22 STYBLINSKI TANG Function
  >>
- >> NO.23 Michalewicz Function
+ >> NO.23 Salomon Function
+ >>
+ >> NO.24 Whitley Function
+ >>
+ >> NO.25 Perm 0,d beta Function
+ >>
+ >> NO.26 Shubert N.4 Function
+ >>
+ >> NO.27 Michalewicz Function
+ >>
+ >> NO.28 Ripple 1 Function
+ >>
+ >> NO.29 Ripple 25 Function
+ >>
+ >> NO.30 Deb 1 Function
+ >>
+ >> NO.31 Deb 3 Function
+ >>
+ >> NO.32 Csendes Function
+ >>
+ >> NO.33 Alpine 1 Function
+ >>
+ >> NO.34 Alpine 2 Function
+ >>
+ >> NO.35 Pathological Function
+ >>
+ >> NO.36 Pinter Function
+ >>
+ >> NO.37 Qing Function
+ >>
+ >> NO.38 Sargan Function
+ >>
+ >> NO.39 Trigonometric 1 Function
+ >>
+ >> NO.40 Trigonometric 2 Function
 
 
  use ALL_TEST_FUNCTION() for evaluating solution
