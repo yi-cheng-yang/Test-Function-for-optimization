@@ -15,13 +15,13 @@ Index of function
 (10) HGBat  
 
 ## (c/c++)  
-> use `cal_test_function()` to calculate the objective value  
-> parameter `x` is solution, parameter `d` is the number of dimensions, parameter `func_num` is the index of function  
+use `cal_test_function()` to calculate the objective value  
+parameter `x` is solution, parameter `d` is the number of dimensions, parameter `func_num` is the index of function  
 
-> use `set_search_range()` to get the search range of function  
-> 
+use `set_search_range()` to get the search range of function  
+ 
 
 ## (Python)
-> use `cal_function_objective()` to calculate the objective value  
-> parameter `x` is solution, parameter `func_num` is the index of function  
-> use `set_search_range()` to get the search range of function  
+use `cal_function_objective()` to calculate the objective value  
+parameter `x` is solution, parameter `func_num` is the index of function  
+use `set_search_range()` to get the search range of function  
