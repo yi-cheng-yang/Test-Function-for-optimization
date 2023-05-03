@@ -1,3 +1,9 @@
+/*
+* Test function for NSYSU Swarm intelligence
+* Editor: yi cheng yang
+*/
+
+
 #include <math.h>
 #include <float.h>
 #include <stdio.h>

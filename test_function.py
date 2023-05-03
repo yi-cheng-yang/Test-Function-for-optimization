@@ -1,5 +1,9 @@
-import numpy as np
+#####################
+# Test function for NSYSU Swarm intelligence
+# Editor: yi cheng yang
+#####################
 
+import numpy as np
  
 
 def Ackley(x):
